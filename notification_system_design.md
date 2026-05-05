@@ -1,17 +1,17 @@
 # Stage 1: REST API Design
 
 ### Core Actions
-* **Fetch Notifications**: Retrieve a list of alerts (Placements, Events, Results) for a specific student.
-* **Filter Notifications**: View specific categories like "Placement" only.
-* **Update Read Status**: Mark a notification as read.
-* **Real-Time Alerts**: Push urgent data to the user immediately.
+Fetch Notifications**: Retrieve a list of alerts (Placements, Events, Results) for a specific student.
+Filter Notifications**: View specific categories like "Placement" only.
+Update Read Status**: Mark a notification as read.
+Real-Time Alerts**: Push urgent data to the user immediately.
 
 ### API Endpoints
 
 #### GET /api/v1/notifications
-* **Description**: Fetches notifications for the logged-in student.
-* **Headers**: `Authorization: Bearer <your_access_token>`
-* **Response**:
+Description**: Fetches notifications for the logged-in student.
+Headers**: `Authorization: Bearer <your_access_token>`
+Response**:
 ```json
 {
   "notifications": [
@@ -43,8 +43,8 @@ This is how a single notification will look in the database:
   "createdAt": "2026-05-05T11:15:00Z"
 }
 
-//  Real-Time Mechanism
-// I will use **WebSockets** for real-time delivery. This allows the server to "push" a placement alert to the student instantly the moment it is generated, instead of making the student's browser refresh the page constantly.
+ Real-Time Mechanism
+I will use **WebSockets** for real-time delivery. This allows the server to "push" a placement alert to the student instantly the moment it is generated, instead of making the student's browser refresh the page constantly.
 
 # Stage 3: Query Optimization
 SELECT * FROM notifications WHERE studentID = 1042 AND isRead = false ORDER BY createdAt ASC;
