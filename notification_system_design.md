@@ -93,9 +93,21 @@ Single Point of Failure: If the 100th email fails, the entire loop might crash, 
 
 Request Timeout: Sending 50,000 emails/notifications in a single request will exceed the server's timeout limit.
 
+
 2. Better Implementation: Message Queues
 Instead of a simple for loop, I would use a Producer-Consumer Architecture (e.g., BullMQ or RabbitMQ):
 
 The Producer: Adds 50,000 "jobs" to a queue instantly.
 
 The Workers: Multiple background workers pick up jobs and send notifications. If one fails, it is automatically retried without stopping the others.
+
+
+## # Stage 6: Priority Inbox Implementation
+
+### 1. Sorting Strategy
+The priority inbox sorts notifications based on a two-tier system:
+* **Tier 1: Weight**: I assigned weights where Placement (3) > Result (2) > Event (1).
+* **Tier 2: Recency**: Within each weight category, notifications are sorted by Timestamp in descending order.
+
+### 2. Maintaining Efficiency
+To keep the "Top N" list updated efficiently as new notifications arrive, I recommend using a **Min-Heap** data structure of size N. This ensures that inserting a new notification and maintaining the top 10 is an $O(\log N)$ operation.
