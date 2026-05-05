@@ -24,5 +24,24 @@
   ]
 }
 
+## # Stage 2: Persistent Storage
+
+### 1. Database Choice: MongoDB (NoSQL)
+* **My Choice**: I recommend using **MongoDB**.
+* **Reason**: Notifications often have different details (a Placement might have a link, while a Result has a grade). MongoDB allows this flexibility.
+* **Volume**: It handles high traffic well, which is needed when 50,000 students get alerts at once.
+
+### 2. Database Schema
+This is how a single notification will look in the database:
+```javascript
+{
+  "ID": "unique-id-123",
+  "studentID": "1042",
+  "notificationType": "Placement", 
+  "message": "New Job Opening at TechCorp",
+  "isRead": false,
+  "createdAt": "2026-05-05T11:15:00Z"
+}
+
 //  Real-Time Mechanism
 // I will use **WebSockets** for real-time delivery. This allows the server to "push" a placement alert to the student instantly the moment it is generated, instead of making the student's browser refresh the page constantly.
