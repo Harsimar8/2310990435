@@ -86,7 +86,7 @@ Redis: Adds architectural complexity and requires a "cache invalidation" strateg
 Pagination: Improves speed but requires UI changes to handle "Load More" functionality.
 
 # Stage 5: Reliability & Batch Processing
-The pseudocode in image_1c45c3.png fails because it is Synchronous and Fragile.
+The pseudocode fails because it is Synchronous and Fragile.
 
 1. Why the current notify_all fails:
 Single Point of Failure: If the 100th email fails, the entire loop might crash, leaving 49,900 students without notifications.
